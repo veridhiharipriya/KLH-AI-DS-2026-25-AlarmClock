@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff7fa">
+  <title>Chronos — Alarm &amp; Clock</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/" aria-label="Chronos home">
+        <span class="brand-mark">◷</span><span>chronos<span class="brand-dot">.</span></span>
+      </a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav aria-label="Main navigation">
+        <a class="nav-link active" href="#overview"><span>◫</span> Overview</a>
+        <a class="nav-link" href="#alarms"><span>◷</span> Alarms</a>
+        <a class="nav-link" href="#tools"><span>◴</span> Timer &amp; stopwatch</a>
+        <a class="nav-link" href="#world"><span>◎</span> World clock</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><span class="eyebrow">YOUR PERSONAL TIMEKEEPER</span><h1>Good day<span class="brand-dot">.</span></h1></div>
+        <div class="topbar-right"><span id="today-label" class="date-label"></span><button id="notify-button" class="icon-button" title="Enable alarm notifications" aria-label="Enable alarm notifications">♧</button></div>
+      </header>
+
+      <section id="overview" class="hero-card">
+        <div class="hero-copy"><span class="eyebrow">LOCAL TIME</span><div id="live-clock" class="live-clock">--:--:--</div><div id="local-zone" class="muted">Loading your timezone…</div></div>
+        <div class="clock-art" aria-hidden="true"><div class="clock-face"><span class="clock-center"></span><span class="hand hand-hour"></span><span class="hand hand-minute"></span><span class="hand hand-second"></span><span class="clock-tick tick-1"></span><span class="clock-tick tick-2"></span><span class="clock-tick tick-3"></span><span class="clock-tick tick-4"></span></div></div>
+        <div class="hero-footer"><span><span class="pulse-dot"></span> SYSTEM CLOCK SYNCHRONIZED</span><span id="hero-date"></span></div>
+      </section>
+
+      <div class="section-heading" id="alarms"><div><span class="eyebrow">STAY ON SCHEDULE</span><h2>Your alarms</h2></div><button id="open-alarm" class="primary-button"><span>＋</span> New alarm</button></div>
+      <section id="alarm-list" class="alarm-grid" aria-live="polite"><div class="empty-card">Loading alarms…</div></section>
+
+      <section id="tools" class="tools-section">
+        <div class="section-heading"><div><span class="eyebrow">FOCUS YOUR TIME</span><h2>Time tools</h2></div></div>
+        <div class="tool-grid">
+          <article class="panel timer-panel"><div class="panel-heading"><div><span class="tool-icon">◴</span><h3>Timer</h3></div><span id="timer-state" class="tag">READY</span></div>
+            <div id="timer-display" class="tool-display">00:05:00</div>
+            <div class="timer-inputs"><label><span>MIN</span><input id="timer-minutes" type="number" min="0" max="999" value="5" aria-label="Timer minutes"></label><span class="input-colon">:</span><label><span>SEC</span><input id="timer-seconds" type="number" min="0" max="59" value="0" aria-label="Timer seconds"></label></div>
+            <div class="tool-actions"><button id="timer-start" class="primary-button">Start timer</button><button id="timer-reset" class="secondary-button">Reset</button></div>
+          </article>
+          <article class="panel stopwatch-panel"><div class="panel-heading"><div><span class="tool-icon">◉</span><h3>Stopwatch</h3></div><span id="stopwatch-state" class="tag">READY</span></div>
+            <div id="stopwatch-display" class="tool-display">00:00.00</div><div id="lap-list" class="lap-list"><span class="muted">Laps will appear here</span></div>
+            <div class="tool-actions"><button id="stopwatch-start" class="primary-button">Start</button><button id="stopwatch-lap" class="secondary-button" disabled>Lap</button><button id="stopwatch-reset" class="secondary-button">Reset</button></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="world" class="world-section">
+        <div class="section-heading"><div><span class="eyebrow">ACROSS THE GLOBE</span><h2>World clock</h2></div></div>
+        <div class="world-map-panel">
+          <div class="world-map-heading"><span>SELECT A CITY ON THE MAP</span><span>Or search every available time zone</span></div>
+          <svg id="world-map" class="world-map" viewBox="0 0 1000 460" role="group" aria-label="World map with selectable city markers">
+            <path class="map-land" d="M91 103l25-32 52-18 44 10 20 25-5 28-25 13-11 25-31 7-8 25-25 12-12 37-24 4-12-26-23-9 3-35-14-22 11-25-14-19 15-20zm124 116l24 5 19 21-9 31-19 23-12 45-22 37-19-8 8-35-17-32 5-36 19-15 5-24 18-12zm84-182l45-20 60 4 27 18 44-6 31 21 38-9 44 12 28-6 60 18 22 24-24 16-51-6-36 13-45-10-33 13-22-12-45 8-31-11-26 12-31-11-30 6-26-12-29 6-31-19-27 7-14-16 20-17 35-5zm87 79l30-16 36 8 20 21-8 24-27 7-20 27-27-5-16-25 5-24zm66 40l30-20 46 4 35 21 38 9 15 24-29 14-33-5-16 24-25-6-4-23-35-7-21-19zm36 51l28 5 19 24-12 21-28-5-17-20zm179-77l31-15 34 8 21 26-12 26-27 8-18 25-30-6-13-26 3-28zm-26 72l25-8 23 15-5 24-28 17-13-19zm119-22l33-16 31 12 13 29-18 20-36-6-23-17z"/>
+            <g id="map-markers"></g>
+          </svg>
+          <div class="timezone-search"><label for="timezone-search">Find a city or time zone</label><div class="search-controls"><input id="timezone-search" type="search" list="timezone-options" placeholder="Try Paris or Asia/Kolkata" autocomplete="off"><datalist id="timezone-options"></datalist><button id="add-timezone" class="secondary-button" type="button">Add city</button></div></div>
+        </div>
+        <div id="world-clocks" class="world-grid"></div>
+      </section>
+
+      <section class="history-section"><div class="section-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h2>Alarm history</h2></div></div><div id="history-list" class="history-list"><p class="muted">No alarms have fired yet.</p></div></section>
+    </main>
+  </div>
+
+  <dialog id="alarm-dialog" class="alarm-dialog"><form id="alarm-form"><div class="dialog-top"><div><span class="eyebrow">MAKE IT HAPPEN</span><h2>New alarm</h2></div><button type="button" class="close-button" id="close-dialog" aria-label="Close">×</button></div><label class="field-label">Alarm name<input id="alarm-label" maxlength="79" placeholder="Morning focus" value="Reminder" required></label><label class="field-label">Date &amp; time<input id="alarm-datetime" type="datetime-local" required></label><fieldset class="repeat-days"><legend>Repeat on <span>(optional)</span></legend><div class="weekday-options"><label><input type="checkbox" value="0"><span>Sun</span></label><label><input type="checkbox" value="1"><span>Mon</span></label><label><input type="checkbox" value="2"><span>Tue</span></label><label><input type="checkbox" value="3"><span>Wed</span></label><label><input type="checkbox" value="4"><span>Thu</span></label><label><input type="checkbox" value="5"><span>Fri</span></label><label><input type="checkbox" value="6"><span>Sat</span></label></div></fieldset><p id="form-error" class="form-error" role="alert"></p><button class="primary-button submit-button" type="submit">Save alarm <span>→</span></button></form></dialog>
+  <section id="ring-alert" class="ring-alert" role="alert" aria-live="assertive" hidden>
+    <div class="ring-indicator" aria-hidden="true">♫</div>
+    <div class="ring-copy"><strong id="ring-title">Alarm ringing</strong><span id="ring-message">Dismiss or snooze to stop the sound.</span></div>
+    <div class="ring-actions"><button id="ring-snooze" class="secondary-button" type="button">Snooze 5 min</button><button id="ring-stop" class="primary-button" type="button">Stop sound</button></div>
+  </section>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
