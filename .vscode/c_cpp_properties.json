@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "name": "Ubuntu",
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "defines": [
+        "_GNU_SOURCE",
+        "_POSIX_C_SOURCE=200809L"
+      ],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "c11",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
+}

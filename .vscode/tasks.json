@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Chronos: build",
+      "type": "shell",
+      "command": "make",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "Chronos: run",
+      "type": "shell",
+      "command": "make",
+      "args": ["run"],
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "base": "$gcc",
+          "background": {
+            "activeOnStart": false,
+            "beginsPattern": "Alarm Clock running at",
+            "endsPattern": "Press Ctrl\\+C to stop"
+          }
+        }
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Chronos: test",
+      "type": "shell",
+      "command": "make",
+      "args": ["test"],
+      "problemMatcher": "$gcc"
+    }
+  ]
+}
